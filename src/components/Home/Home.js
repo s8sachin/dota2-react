@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './Header';
 import { connect } from 'react-redux';
 import { getHeroesListAction } from '../../actions';
+import HeroesList from '../HeroesList/HeroesList';
 class Home extends Component {
   componentDidMount() {
     this.props.getHeroesListAction();
@@ -9,9 +10,10 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Header />
-      </div>
+        <HeroesList />
+      </React.Fragment>
     );
   }
 }
