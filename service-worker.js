@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.2/workbox-sw.js");
 
 importScripts(
-  "/dota2-react/precache-manifest.ca8a69de7d06e8e06d05b89953f0da97.js"
+  "/dota2-react/precache-manifest.ce75ec83e07b215b0ab381ee640d38cd.js"
 );
 
 workbox.clientsClaim();

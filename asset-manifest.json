@@ -1,13 +1,13 @@
 {
-  "main.css": "/dota2-react/static/css/main.82ec7502.chunk.css",
-  "main.js": "/dota2-react/static/js/main.bce91d98.chunk.js",
-  "main.js.map": "/dota2-react/static/js/main.bce91d98.chunk.js.map",
-  "static/js/1.2084f60c.chunk.js": "/dota2-react/static/js/1.2084f60c.chunk.js",
-  "static/js/1.2084f60c.chunk.js.map": "/dota2-react/static/js/1.2084f60c.chunk.js.map",
+  "main.css": "/dota2-react/static/css/main.7105dd82.chunk.css",
+  "main.js": "/dota2-react/static/js/main.d4a431dd.chunk.js",
+  "main.js.map": "/dota2-react/static/js/main.d4a431dd.chunk.js.map",
+  "static/js/1.e0207b90.chunk.js": "/dota2-react/static/js/1.e0207b90.chunk.js",
+  "static/js/1.e0207b90.chunk.js.map": "/dota2-react/static/js/1.e0207b90.chunk.js.map",
   "runtime~main.js": "/dota2-react/static/js/runtime~main.d8cfdc06.js",
   "runtime~main.js.map": "/dota2-react/static/js/runtime~main.d8cfdc06.js.map",
-  "static/css/main.82ec7502.chunk.css.map": "/dota2-react/static/css/main.82ec7502.chunk.css.map",
+  "static/css/main.7105dd82.chunk.css.map": "/dota2-react/static/css/main.7105dd82.chunk.css.map",
   "index.html": "/dota2-react/index.html",
-  "precache-manifest.ca8a69de7d06e8e06d05b89953f0da97.js": "/dota2-react/precache-manifest.ca8a69de7d06e8e06d05b89953f0da97.js",
+  "precache-manifest.ce75ec83e07b215b0ab381ee640d38cd.js": "/dota2-react/precache-manifest.ce75ec83e07b215b0ab381ee640d38cd.js",
   "service-worker.js": "/dota2-react/service-worker.js"
 }
