@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Card, CardActionArea, CardMedia, Typography, CardActions, CardContent, Button, Grid, GridList, GridListTile, GridListTileBar } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles';
 
@@ -95,9 +94,4 @@ class HeroesList extends Component {
   }
 }
 
-const mapStateToProps = ({heroesData}) => {
-  const { heroesList } = heroesData;
-  return { heroesList };
-}
-
-export default connect(mapStateToProps)(withStyles(styles)(HeroesList));
+export default withStyles(styles)(HeroesList);

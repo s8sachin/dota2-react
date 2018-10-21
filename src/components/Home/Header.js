@@ -4,6 +4,9 @@ import { AppBar, Toolbar, Typography, IconButton, InputBase } from '@material-ui
 import { Menu as MenuIcon, Search as SearchIcon } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
+import { debounce } from 'lodash';
+import { searchHeroesAction } from '../../actions/heroes';
+import { connect } from 'react-redux';
 
 const styles = theme => ({
   root: {
@@ -72,6 +75,19 @@ const styles = theme => ({
 });
 
 class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.changeSearch = debounce(this.props.searchHeroesAction, 250)
+  }
+
+  handleChange = (e) => {
+    const val = e.target.value
+
+    this.setState({ value: val }, () => {
+      this.changeSearch(val)
+    })
+  }
+
   render() {
     const { classes } = this.props;
     return (
@@ -95,6 +111,7 @@ class Header extends React.Component {
                   root : classes.inputRoot,
                   input: classes.inputInput,
                 }}
+                onChange={(e) => this.handleChange(e)}
               />
             </div>
           </Toolbar>
@@ -104,4 +121,4 @@ class Header extends React.Component {
   }
 }
 
-export default withStyles(styles)(Header);
+export default connect(null, { searchHeroesAction })(withStyles(styles)(Header));
