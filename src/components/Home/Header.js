@@ -1,12 +1,14 @@
 
 import React from 'react';
-import { AppBar, Toolbar, Typography, IconButton, InputBase } from '@material-ui/core';
-import { Menu as MenuIcon, Search as SearchIcon } from '@material-ui/icons';
+import { AppBar, Toolbar, Typography, IconButton, InputBase, SwipeableDrawer, List, Divider, ListItem } from '@material-ui/core';
+import { Menu as MenuIcon, Search as SearchIcon, ArrowBack as ArrowBackIcon } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { debounce } from 'lodash';
-import { searchHeroesAction } from '../../actions/heroes';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom'
+import styled from 'styled-components';
+import { searchHeroesAction } from '../../actions/heroes';
 
 const styles = theme => ({
   root: {
@@ -14,6 +16,9 @@ const styles = theme => ({
   },
   grow: {
     flexGrow: 1,
+  },
+  list: {
+    width: 300
   },
   menuButton: {
     marginLeft : -12,
@@ -74,10 +79,28 @@ const styles = theme => ({
   },
 });
 
+const StyledLink = styled(NavLink)`
+    text-decoration: none;
+    color: inherit;
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
+`;
+
 class Header extends React.Component {
   constructor(props) {
     super(props);
-    this.changeSearch = debounce(this.props.searchHeroesAction, 250)
+    this.state = { drawer: false, pathname: null };
+    this.changeSearch = debounce(this.props.searchHeroesAction, 250);
+    this.handleActive = this.handleActive.bind(this);
+  }
+
+  handleActive (match, location) {
+    this.setState((state) => {
+      if(state.pathname !== location.pathname) {
+        return { pathname: location.pathname };
+      }
+    });
   }
 
   handleChange = (e) => {
@@ -88,15 +111,21 @@ class Header extends React.Component {
     })
   }
 
+  toggleDrawer = (open) => {
+    this.setState({ drawer: open });
+  };
+
   render() {
     const { classes } = this.props;
+    const { pathname } = this.state;
+    console.log(pathname)
     return (
       <div className={classes.root}>
         <AppBar position="static" color="primary">
           <Toolbar>
-            {/* <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
+            <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer" onClick={() => this.toggleDrawer(true)}>
               <MenuIcon />
-            </IconButton> */}
+            </IconButton>
             <Typography variant="h6" color="inherit">
               Dota 2
             </Typography>
@@ -116,6 +145,39 @@ class Header extends React.Component {
             </div>
           </Toolbar>
         </AppBar>
+        <SwipeableDrawer
+          open={this.state.drawer}
+          onClose={() => this.toggleDrawer(false)}
+          onOpen={() => this.toggleDrawer(true)}
+        >
+          <List>
+            <ListItem
+              button
+              tabIndex={0}
+              onClick={() => this.toggleDrawer(false)}
+              onKeyDown={() => this.toggleDrawer(false)}
+              style={{ height: 'auto', padding: '20px'}}
+            >
+              <ArrowBackIcon />
+            </ListItem>
+          </List>
+          <Divider />
+            <div className={classes.list}>
+              <List>
+                <StyledLink to="/" isActive={this.handleActive}>
+                  <ListItem button selected={pathname === '/'}>
+                    Normal View
+                  </ListItem>
+                </StyledLink>
+                  <Divider />
+                <StyledLink to="/carouselView" isActive={this.handleActive}>
+                  <ListItem button selected={pathname === '/carouselView'}>
+                    Carousel View
+                  </ListItem>
+                </StyledLink>
+              </List>
+            </div>
+        </SwipeableDrawer>
       </div>
     );
   }
